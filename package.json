@@ -1,0 +1,30 @@
+{
+  "name": "datascraping18",
+  "version": "1.0.0",
+  "description": "\"week 18 peoject using mongoDB and express, data scraping for a given url,\",",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kevarnold02/week18dataScraping.git"
+  },
+  "author": "Kevin Arnold",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kevarnold02/week18dataScraping/issues"
+  },
+  "homepage": "https://github.com/Kevarnold02/week18dataScraping#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "cheerio": "^0.20.0",
+    "express": "^4.13.4",
+    "mongojs": "^2.4.0",
+    "mongoose": "^4.4.20",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.9.2",
+    "request": "^2.72.0"
+  }
+}
