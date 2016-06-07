@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var request = require('request');
 var cheerio = require('cheerio');
 
+var PORT = process.env.PORT || 3000;
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
   extended: false
@@ -116,6 +117,7 @@ app.post('/articles/:id', function(req, res) {
 
 
 
-app.listen(3000, function() {
-  console.log('App running on port 3000!');
+
+app.listen(PORT, function() {
+  console.log('App running on port!', PORT);
 });
