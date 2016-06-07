@@ -13,7 +13,15 @@ app.use(bodyParser.urlencoded({
 app.use(express.static('public'));
 
 //Database configuration
-mongoose.connect('mongodb://localhost/webscraping');
+// write and if statment that looks for the mongolab plug. if there, connect with mongolab plugin credentials 
+// else connection with local
+// mongoose.connect('mongodb://localhost/webscraping');
+if (process.env.MONGOLAB_URI) {
+  mongoose.connect('process.env.MONGOLAB_URI');
+} else {
+  mongoose.connect('mongodb://localhost/webscraping');
+}
+
 var db = mongoose.connection;
 
 db.on('error', function (err) {
