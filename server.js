@@ -60,11 +60,10 @@ app.get('/scrape', function(req, res) {
           console.log(doc);
         }
       });  
-
     });
-    res.send("Scrape Complete");
-  })
-  
+    
+  });
+  res.send("Scrape Complete");
 });
 
 app.get('/articles', function(req, res) {
@@ -86,7 +85,7 @@ app.get('/articles/:id', function(req, res){
     if (err){
       console.log(err);
     } else {
-      console.log(doc);
+      console.log('doc from articles/:id route: ', doc);
       res.json(doc);
     }
   });
@@ -114,9 +113,23 @@ app.post('/articles/:id', function(req, res) {
 
 //other routes that will be needed
 
-// app.delete('/deleteNote')
-
-
+app.get('/articles/:id', function(req, res) {
+  // db.notes.remove({
+  //   "_id": mongojs.ObjectId(req.params.id)
+  // }, function(err, removed) {
+    console.log('get dArticles route hit');
+    db.notes.remove({
+      "_id": mongojs.ObjectId(req.params.id)
+    }, function(err, removed) {
+    if (err) {
+      console.log(err);
+            res.send(err);
+    } else {
+      console.log(removed);
+      res.send(removed);
+    }
+  });
+});
 
 
 app.listen(PORT, function() {

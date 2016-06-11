@@ -4,11 +4,11 @@ $.getJSON('/articles', function(data) {
   }
 });
 
-
 $(document).on('click', 'p', function(){
-
-  console.log("i clicked the thing");
+  $('#notes').empty();
   var thisId = $(this).attr('data-id');
+  // console.log("i clicked the thing");
+  // var thisId = $(this).attr('data-id');
 
   $.ajax({
     method: "GET",
@@ -21,10 +21,12 @@ $(document).on('click', 'p', function(){
       $('#notes').append('<input id="titleinput" name="title" >');
       $('#notes').append('<textarea id="bodyinput" name="body"></textarea>');
       $('#notes').append('<button data-id="' + data._id + '" id="savenote">Save Note</button>');
+      
 
       if(data.note){
         $('#titleinput').val(data.note.title);
         $('#bodyinput').val(data.note.body);
+        $('#notes').append('<button data-id"' + data._id + '" id="deletenote">Delete Note</button>');
       }
       });
 
@@ -59,11 +61,24 @@ $(document).on('click', '#savenote', function(){
     }
   })
     .done(function( data ) {
-      console.log(data);
+      console.log('data from savenote route: ', data);
       $('#notes').empty();
     });
 
 
   $('#titleinput').val("");
   $('#bodyinput').val("");
+});
+
+$(document).on('click', '#deletenote', function(){
+  var thisId = $(this).parent();
+  // var thisId = $(this).attr('data-id');
+  $.ajax({
+    type: "GET",
+    url: '/articles/' + thisId.data('id'),
+    success: function(response){
+      console.log('response from deletenote: ',response);
+      thisId.remove();
+    }
+  });
 });
